@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: batch_user
+      POSTGRES_PASSWORD: batch_password
+      POSTGRES_DB: batch_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  batch-service:
+    build: ./batch_service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - response-service
+
+  response-service:
+    build: ./response_service
+    ports:
+      - "8081:8081"
+
+volumes:
+  postgres_data:
