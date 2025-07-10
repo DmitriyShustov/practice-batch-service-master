@@ -1,0 +1,6 @@
+[submodule "batch_service"]
+	path = batch_service
+	url = https://github.com/DmitriyShustov/practice-batch-service.git
+[submodule "response_service"]
+	path = response_service
+	url = https://github.com/DmitriyShustov/practice-response-service.git
